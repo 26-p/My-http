@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-12 my-4">
+    <form [formGroup]="PieForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col-sm-3">
+          <label for="bx1">Box 1</label>
+        </div>
+        <div class="col-sm-3">
+          <label for="bx2">Box 2</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm-3">
+          <input type="text" formControlName="box1" id="bx1" (blur)="valueForBox2()"><br>
+          <small *ngIf="PieForm.get('box1').invalid && PieForm.get('box1').touched" class="text-danger">
+              <span *ngIf="PieForm.get('box1')?.errors?.['max'] || PieForm.get('box1')?.errors?.['min']||
+              PieForm.get('box1')?.errors?.['pattern']">Enter Valid Value</span>
+          </small>
+        </div>
+        <div class="col-sm-3">
+          <input type="text" formControlName="box2" id="bx2" (blur)="valueForBox1()"><br>
+          <small *ngIf="PieForm.get('box2').invalid && PieForm.get('box2').touched" class="text-danger">
+            <span *ngIf="PieForm.get('box2')?.errors?.['max'] || PieForm.get('box2')?.errors?.['min']||
+            PieForm.get('box2')?.errors?.['pattern']">Enter Valid Value</span>
+          </small>
+        </div>
+        <div class="col-sm-3">
+          <button type="submit" class="btn btn-success btn-sm">create chart</button>
+        </div>
+       </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <p-chart type="pie" [data]="data"></p-chart>
+    </div>
+  </div>
+</div>
+
+
+
